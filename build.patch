@@ -1,0 +1,11 @@
+--- pth-2.0.7/Makefile.in~	2013-01-07 19:53:40.000000000 -0800
++++ pth-2.0.7/Makefile.in	2013-01-07 19:56:22.186038872 -0800
+@@ -423,7 +423,7 @@
+ ##  (AUTOMATICALLY UPDATED - DO NOT EDIT)
+ ##
+ 
+-$(LOBJS): Makefile
++$(LOBJS): pth_p.h Makefile
+ 
+ # DO NOT REMOVE
+ pth_attr.lo: pth_attr.c pth_p.h pth_vers.c pth.h pth_acdef.h pth_acmac.h
