@@ -1,0 +1,19 @@
+Configure miss: whether poll(2) facility has to be faked
+Configure miss: whether readv(2)/writev(2) facility has to be faked
+Configure miss: accept in -lsocket
+Configure miss: attribute ss_base in struct sigaltstack from sys/signal.h
+Configure miss: attribute ss_sp in struct sigaltstack from sys/signal.h
+Configure miss: a single-argument based gettimeofday
+Configure miss: sigsetjmp
+Configure miss: sys/socketcall.h usability
+Configure miss: sys/socketcall.h presence
+Configure miss: sys/socketcall.h
+Configure miss: define RTLD_NEXT in dlfcn.h
+Configure miss: whether soft system call mapping is used
+Configure miss: whether hard system call mapping is used
+Configure miss: whether to activate batch build mode
+Configure miss: whether to activate maintainer build targets
+Configure miss: whether to build Pthread library
+Configure miss: whether to build against external OSSP ex library
+Configure miss: whether to build against external Sfio library
+Configure miss: whether to build against external Dmalloc library

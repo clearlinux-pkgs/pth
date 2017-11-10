@@ -1,0 +1,15 @@
+diff -ru pth-2.0.7/Makefile.in pth-2.0.7_modified/Makefile.in
+--- pth-2.0.7/Makefile.in	2006-06-08 17:54:01.000000000 +0000
++++ pth-2.0.7_modified/Makefile.in	2017-11-10 02:23:26.833270198 +0000
+@@ -150,9 +150,9 @@
+ .SUFFIXES:
+ .SUFFIXES: .c .o .lo
+ .c.o:
+-	$(CC) -c $(CPPFLAGS) $(CFLAGS) $<
++	$(CC) -c $(CPPFLAGS) $(CFLAGS) $(DEFAULTFLAGS) $<
+ .c.lo:
+-	$(LIBTOOL) --mode=compile --quiet $(CC) -c $(CPPFLAGS) $(CFLAGS) $<
++	$(LIBTOOL) --mode=compile --quiet $(CC) -c $(CPPFLAGS) $(CFLAGS) $(DEFAULTFLAGS) $<
+ 
+ #   the default target
+ all: all-normal
