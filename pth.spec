@@ -6,7 +6,7 @@
 #
 Name     : pth
 Version  : 2.0.7
-Release  : 9
+Release  : 10
 URL      : http://ftp.gnu.org/gnu/pth/pth-2.0.7.tar.gz
 Source0  : http://ftp.gnu.org/gnu/pth/pth-2.0.7.tar.gz
 Source99 : http://ftp.gnu.org/gnu/pth/pth-2.0.7.tar.gz.sig
