@@ -6,7 +6,7 @@
 #
 Name     : pth
 Version  : 2.0.7
-Release  : 12
+Release  : 13
 URL      : https://mirrors.kernel.org/gnu/pth/pth-2.0.7.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/pth/pth-2.0.7.tar.gz
 Source99 : https://mirrors.kernel.org/gnu/pth/pth-2.0.7.tar.gz.sig
