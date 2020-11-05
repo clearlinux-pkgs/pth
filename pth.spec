@@ -6,16 +6,18 @@
 #
 Name     : pth
 Version  : 2.0.7
-Release  : 13
+Release  : 14
 URL      : https://mirrors.kernel.org/gnu/pth/pth-2.0.7.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/pth/pth-2.0.7.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/pth/pth-2.0.7.tar.gz.sig
+Source1  : https://mirrors.kernel.org/gnu/pth/pth-2.0.7.tar.gz.sig
 Summary  : GNU Pth - The GNU Portable Threads
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: pth-bin
-Requires: pth-lib
-Requires: pth-doc
+Requires: pth-bin = %{version}-%{release}
+Requires: pth-lib = %{version}-%{release}
+Requires: pth-license = %{version}-%{release}
+Requires: pth-man = %{version}-%{release}
+BuildRequires : buildreq-configure
 BuildRequires : libtool-dev
 BuildRequires : m4
 Patch1: build.patch
@@ -45,6 +47,7 @@ multithreaded applications.
 %package bin
 Summary: bin components for the pth package.
 Group: Binaries
+Requires: pth-license = %{version}-%{release}
 
 %description bin
 bin components for the pth package.
@@ -53,32 +56,43 @@ bin components for the pth package.
 %package dev
 Summary: dev components for the pth package.
 Group: Development
-Requires: pth-lib
-Requires: pth-bin
-Provides: pth-devel
+Requires: pth-lib = %{version}-%{release}
+Requires: pth-bin = %{version}-%{release}
+Provides: pth-devel = %{version}-%{release}
+Requires: pth = %{version}-%{release}
 
 %description dev
 dev components for the pth package.
 
 
-%package doc
-Summary: doc components for the pth package.
-Group: Documentation
-
-%description doc
-doc components for the pth package.
-
-
 %package lib
 Summary: lib components for the pth package.
 Group: Libraries
+Requires: pth-license = %{version}-%{release}
 
 %description lib
 lib components for the pth package.
 
 
+%package license
+Summary: license components for the pth package.
+Group: Default
+
+%description license
+license components for the pth package.
+
+
+%package man
+Summary: man components for the pth package.
+Group: Default
+
+%description man
+man components for the pth package.
+
+
 %prep
 %setup -q -n pth-2.0.7
+cd %{_builddir}/pth-2.0.7
 %patch1 -p1
 %patch2 -p1
 
@@ -86,21 +100,28 @@ lib components for the pth package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1521070131
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604604867
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
-make  %{?_smp_mflags} DEFAULTFLAGS="$CFLAGS"
+make  %{?_smp_mflags}  DEFAULTFLAGS="$CFLAGS"
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
-export SOURCE_DATE_EPOCH=1521070131
+export SOURCE_DATE_EPOCH=1604604867
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pth
+cp %{_builddir}/pth-2.0.7/COPYING %{buildroot}/usr/share/package-licenses/pth/7b39ea61e6159a76af332849a402676ab0698af9
 %make_install
 
 %files
@@ -112,16 +133,20 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/pth.h
 /usr/lib64/libpth.so
 /usr/share/aclocal/*.m4
-
-%files doc
-%defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
-%doc /usr/share/man/man3/*
+/usr/share/man/man3/pth.3
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libpth.so.20
 /usr/lib64/libpth.so.20.0.27
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pth/7b39ea61e6159a76af332849a402676ab0698af9
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/pth-config.1
